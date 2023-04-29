@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model book {
+  id               Int      @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  authors          Author[]
+  title            String   @db.VarChar(45)
+  publication_year String   @db.VarChar(4)
+  publisher_name   String   @db.VarChar(45)
+  volume_number    Int
+  style            style    @default(IEEE)
+}
+
+model conference_paper {
+  id          Int      @id @default(autoincrement())
+  authors     Author[]
+  year        String   @db.VarChar(4)
+  title       String   @db.VarChar(45)
+  info        String   @db.VarChar(50)
+  page_number String   @db.VarChar(10)
+  style       style    @default(IEEE)
+}
+
+model journal_article {
+  id            Int      @id @default(autoincrement())
+  authors       Author[]
+  year          String   @db.VarChar(4)
+  title         String   @db.VarChar(45)
+  journal_name  String   @db.VarChar(45)
+  volume_number String   @db.VarChar(5)
+  issue_number  String   @db.VarChar(10)
+  page_number   String   @db.VarChar(10)
+  style         style    @default(IEEE)
+
+  @@map("journal-article")
+}
+
+enum style {
+  IEEE
+  CHICARGO
+  APA
+}
+
+model Author {
+  id                 Int               @id @default(autoincrement())
+  given              String
+  family             String
+  book               book?             @relation(fields: [bookId], references: [id])
+  bookId             Int?
+  conference_paper   conference_paper? @relation(fields: [conference_paperId], references: [id])
+  conference_paperId Int?
+  journal_article    journal_article?  @relation(fields: [journal_articleId], references: [id])
+  journal_articleId  Int?
+}
