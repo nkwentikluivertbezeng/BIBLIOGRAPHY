@@ -23,7 +23,7 @@ dependencies:
     specifier: ~2.6.9
     version: 2.6.9
   express:
-    specifier: ~4.16.1
+    specifier: ~4.16.4
     version: 4.16.4
   http-errors:
     specifier: ~1.6.3

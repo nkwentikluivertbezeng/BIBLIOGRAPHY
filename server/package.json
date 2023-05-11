@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon server.ts"
   },
   "dependencies": {
     "@citation-js/core": "^0.6.5",
@@ -19,6 +19,8 @@
     "nodemon": "^2.0.22"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
     "@types/node": "^20.1.2",
     "prisma": "^4.14.0",
     "ts-node": "^10.9.1",
