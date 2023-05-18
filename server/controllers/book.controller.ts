@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import IControllerBase from "../interfaces/IControllerBase.interface";
 import { PrismaClient } from "@prisma/client";
 
-
 class BookController implements IControllerBase {
   public path = "/books";
   public router = express.Router();
@@ -16,19 +15,28 @@ class BookController implements IControllerBase {
   public initRoutes() {
     this.router.get(this.path, this.getBooks);
     this.router.post(this.path, this.postBook);
+    this.router.post(this.path + "/many", this.postBooks);
   }
 
-  postBook = (req: Request, res: Response) => {
-    const book = this.prisma.book.create({
+  postBooks = async (req: Request, res: Response) => {
+    const gottenBooks = req.body.books;
+    res.status(200).send(
+      await this.prisma.book.createMany({
+        data: gottenBooks,
+      })
+    );
+  };
+
+  postBook =  (req: Request, res: Response) => {
+    const book =  this.prisma.book.create({
       data: {
-        author: req.body.author,
-        title: req.body.title,
-        year: req.body.year,
-        publisher: req.body.publisher,
-        volume: Math.floor(parseInt(req.body.volume_number)),
+       ...req.body.book
       },
-    });
-    res.json(book);
+    }).then(re => {
+      res.status(200).send(re)
+      
+    })
+   
   };
 
   getBooks = async (req: Request, res: Response) => {
