@@ -14,6 +14,6 @@ export class AppComponent {
     this.diaglog.open(GetReferencesComponent)
   }
   addReferences(){
- axios.post('http://localhost:3000/book').then(res=>console.log(res.data))
+ axios.post('http://localhost:3000/books').then(res=>console.log(res.data))
   }
 }
