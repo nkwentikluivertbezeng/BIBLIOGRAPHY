@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import {FormControl} from '@angular/forms'
 import { GetReferencesComponent } from './get-references/get-references.component';
 import axios from 'axios';
 
@@ -39,6 +40,12 @@ export class AppComponent {
   books: Book[] = [];
   conferences: Conference[]=[];
   journals: Journal[]=[]
+  showBooks = true;
+  showConferences = false;
+  showJournals = false
+  styles= [{name :'APA', show  : true} , {name : 'IEEE', show: false}];
+
+  showAPA = false;
 
   title = 'Bivliography';
   constructor(private diaglog: MatDialog) {}

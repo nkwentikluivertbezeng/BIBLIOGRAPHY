@@ -12,6 +12,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import {MatListModule} from '@angular/material/list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,10 +23,14 @@ import {MatListModule} from '@angular/material/list';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MatFormFieldModule,
+    MatRadioModule,
+    MatCheckboxModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatSelectModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
