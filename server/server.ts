@@ -5,6 +5,7 @@ import loggerMiddleware from './middleware/logger'
 import HomeController from './controllers/home.controller'
 import BookController from './controllers/book.controller'
 import JournalController from './controllers/journal.controller'
+import ConferenceController from './controllers/conference.controller'
 
 
 
@@ -13,7 +14,8 @@ const app = new App({
     controllers: [
         new HomeController(),
         new BookController(),
-        new JournalController()
+        new JournalController(),
+        new ConferenceController()
     ],
     middleWares: [
         bodyParser.json(),

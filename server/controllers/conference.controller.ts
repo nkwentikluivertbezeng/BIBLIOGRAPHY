@@ -18,20 +18,21 @@ class ConferenceController implements IControllerBase {
   }
 
   postConference = async (req: Request, res: Response) => {
-    const conference = await this.prisma.journal_article.create({
-      data: {
-      ...req.body.conference
-      },
-    });
-    res.status(200).send(conference);
+    res.status(200).send(
+      await this.prisma.conference_paper.create({
+        data: {
+          ...req.body.conference,
+        },
+      })
+    );
   };
 
-
-  postConferences = (req: Request, res: Response) => {
-    const conference = this.prisma.conference_paper.createMany({
-      data: req.body.conferences,
-    });
-    res.status(200).send(conference);
+  postConferences = async (req: Request, res: Response) => {
+    res.status(200).send(
+      await this.prisma.conference_paper.createMany({
+        data: req.body.conferences,
+      })
+    );
   };
 
   getConferences = async (req: Request, res: Response) => {

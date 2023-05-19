@@ -27,16 +27,14 @@ class JournalController implements IControllerBase {
   };
 
 
-  postJournals = (req: Request, res: Response) => {
-    const journal = this.prisma.journal_article.createMany({
+  postJournals = async (req: Request, res: Response) => {
+    res.status(200).send( await this.prisma.journal_article.createMany({
       data: req.body.journals,
-    });
-    res.status(200).send(journal);
+    }));
   };
 
   getJournal = async (req: Request, res: Response) => {
-    const journals = await this.prisma.journal_article.findMany();
-    res.send(journals);
+    res.send( await this.prisma.journal_article.findMany());
   };
 }
 
