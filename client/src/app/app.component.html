@@ -1,11 +1,65 @@
 <mat-toolbar>
-
   <span>bibliographic management system</span>
   <span class="example-spacer"></span>
   <button mat-raised-button (click)="openGetReferences()">
-      get references
+    get references
   </button>
-  <button mat-raised-button (click)="addReferences()">
-    add reference
-</button>
+  <button mat-raised-button (click)="addReferences()">add reference</button>
 </mat-toolbar>
+<mat-list>
+  <div>APA</div>
+  <mat-list-item><h2>Books</h2></mat-list-item>
+  <mat-list-item *ngFor="let reference of books">
+    <p>
+      {{ reference.author }} ({{ reference.year }}). <i>{{ reference.title }}</i
+      >. J{{ reference.publisher }}
+    </p>
+  </mat-list-item>
+  <mat-list-item><h2>Conferences</h2></mat-list-item>
+  <mat-list-item *ngFor="let reference of conferences">
+    <p>
+      {{ reference.author }} ({{ reference.year }}). {{ reference.title }}
+      <i>{{ reference.information }}</i
+      >, {{ reference.pages }}
+    </p>
+  </mat-list-item>
+  <mat-list-item><h2>Journals</h2></mat-list-item>
+  <mat-list-item *ngFor="let journal of journals">
+    <p>
+      {{ journal.author }} ({{ journal.year }}). {{ journal.title }}:
+      {{ journal.information }} <i> {{ journal.name }}</i
+      >, <i>{{ journal.issueNumber }}</i
+      >({{ journal.volume }}), {{ journal.pages }}.
+    </p>
+  </mat-list-item>
+</mat-list>
+
+<mat-list>
+  <div>IEEE</div>
+  <mat-list-item><h2>Books</h2></mat-list-item>
+  <mat-list-item *ngFor="let book of books">
+    <p>
+      {{ book.author }} <i>{{ book.title }}</i>
+      {{ book.volume ? ", vol. " + book.volume + "." : "." }}
+      {{book.publisher ? book.publisher : ''}},{{ book.year }}.
+    </p>
+  </mat-list-item>
+
+  <mat-list-item><h2>Conferences</h2></mat-list-item>
+  <mat-list-item *ngFor="let conference of conferences">
+    <p>
+      {{ conference.author }} {{ conference.title }}
+      <i>{{ conference.information }}</i
+      >, {{ conference.year }}, pp. {{ conference.pages }}.
+    </p>
+  </mat-list-item>
+  <mat-list-item><h2>Journals</h2></mat-list-item>
+  <mat-list-item *ngFor="let journal of journals">
+    <p>
+      {{ journal.author }}, “{{ journal.title }} : {{ journal.information }}“
+      <i>{{ journal.name }}</i
+      >, vol. {{ journal.volume }}, no. {{ journal.issueNumber }}, pp.
+      {{ journal.pages }}, {{ journal.year }}.
+    </p>
+  </mat-list-item>
+</mat-list>

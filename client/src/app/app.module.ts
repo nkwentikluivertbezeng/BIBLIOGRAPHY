@@ -11,6 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
