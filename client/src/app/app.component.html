@@ -1,11 +1,94 @@
 <mat-toolbar>
-
   <span>bibliographic management system</span>
+  <span class="example-spacer"> </span>
+
+
+  <mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="showAPA">
+  Style:
+  <mat-radio-button class="example-radio-button" *ngFor="let style of styles" [value]="style.show">
+    {{style.name}}
+  </mat-radio-button>
+</mat-radio-group>
+
   <span class="example-spacer"></span>
   <button mat-raised-button (click)="openGetReferences()">
-      get references
+    get references
   </button>
-  <button mat-raised-button (click)="addReferences()">
-    add reference
-</button>
+  <button mat-raised-button (click)="addReferences()">add reference</button>
 </mat-toolbar>
+<section class="example-section">
+  <mat-checkbox class="example-margin" [(ngModel)]="showBooks" :toggle="showBooks =! showBooks">Books</mat-checkbox>
+  <mat-checkbox class="example-margin" [(ngModel)]="showConferences">Conferences</mat-checkbox>
+  <mat-checkbox class="example-margin" [(ngModel)]="showJournals">Journals</mat-checkbox>
+
+</section>
+
+<mat-list *ngIf="showAPA">
+  <mat-list-item *ngIf="showBooks"><h2>Books</h2></mat-list-item>
+  <div *ngIf="showBooks">
+  <mat-list-item  *ngFor="let reference of books">
+    <p>
+      {{ reference.author }} ({{ reference.year }}). <i>{{ reference.title }}</i
+      >. J{{ reference.publisher }}
+    </p>
+  </mat-list-item>
+</div>
+<div *ngIf="showConferences">
+  <mat-list-item><h2>Conferences</h2></mat-list-item>
+  <mat-list-item *ngFor="let reference of conferences">
+    <p>
+      {{ reference.author }} ({{ reference.year }}). {{ reference.title }}
+      <i>{{ reference.information }}</i
+      >, {{ reference.pages }}
+    </p>
+  </mat-list-item>
+</div>
+<div *ngIf="showJournals">
+  <mat-list-item><h2>Journals</h2></mat-list-item>
+  <mat-list-item *ngFor="let journal of journals">
+    <p>
+      {{ journal.author }} ({{ journal.year }}). {{ journal.title }}:
+      {{ journal.information }} <i> {{ journal.name }}</i
+      >, <i>{{ journal.issueNumber }}</i
+      >({{ journal.volume }}), {{ journal.pages }}.
+    </p>
+  </mat-list-item>
+</div>
+</mat-list>
+
+<mat-list *ngIf="!showAPA">
+  <div *ngIf="showBooks">
+  <mat-list-item><h2>Books</h2></mat-list-item>
+  <mat-list-item *ngFor="let book of books">
+    <p>
+      {{ book.author }} <i>{{ book.title }}</i>
+      {{ book.volume ? ", vol. " + book.volume + "." : "." }}
+      {{book.publisher ? book.publisher : ''}},{{ book.year }}.
+    </p>
+  </mat-list-item>
+</div>
+<div *ngIf="showConferences">
+  <mat-list-item><h2>Conferences</h2></mat-list-item>
+  <mat-list-item *ngFor="let conference of conferences">
+    <p>
+      {{ conference.author }} {{ conference.title }}
+      <i>{{ conference.information }}</i
+      >, {{ conference.year }}, pp. {{ conference.pages }}.
+    </p>
+  </mat-list-item>
+</div>
+<div *ngIf="showJournals">
+  <mat-list-item><h2>Journals</h2></mat-list-item>
+  <mat-list-item *ngFor="let journal of journals">
+    <p>
+      {{ journal.author }}, “{{ journal.title }} : {{ journal.information }}“
+      <i>{{ journal.name }}</i
+      >, vol. {{ journal.volume }}, no. {{ journal.issueNumber }}, pp.
+      {{ journal.pages }}, {{ journal.year }}.
+    </p>
+  </mat-list-item>
+</div>
+</mat-list>

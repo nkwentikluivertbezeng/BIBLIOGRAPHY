@@ -27,16 +27,16 @@ class BookController implements IControllerBase {
     );
   };
 
-  postBook =  (req: Request, res: Response) => {
-    const book =  this.prisma.book.create({
-      data: {
-       ...req.body.book
-      },
-    }).then(re => {
-      res.status(200).send(re)
-      
-    })
-   
+  postBook = async (req: Request, res: Response) => {
+    const book = await this.prisma.book
+      .create({
+        data: {
+          ...req.body.book,
+        },
+      })
+      .then((re) => {
+        res.status(200).send(re);
+      });
   };
 
   getBooks = async (req: Request, res: Response) => {

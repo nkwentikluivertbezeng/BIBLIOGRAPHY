@@ -1,5 +1,5 @@
-import express = require("express");
-const  cors = require('cors');
+import express from "express";
+import  cors from 'cors';
 import { Application } from "express";
 
 class App {
@@ -9,11 +9,10 @@ class App {
   constructor(appInit: { port: number; middleWares: any; controllers: any }) {
     this.app = express();
     this.port = appInit.port;
-
+    this.app.use(cors());
     this.middlewares(appInit.middleWares);
     this.routes(appInit.controllers);
     this.app.use(express.json());
-    this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
   }
 
