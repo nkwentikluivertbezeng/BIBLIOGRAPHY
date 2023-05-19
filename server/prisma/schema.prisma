@@ -13,9 +13,9 @@ datasource db {
 model book {
   id        Int    @id @default(autoincrement())
   author    String
-  title     String @db.VarChar(45)
+  title     String
   year      String @db.VarChar(4)
-  publisher String? @db.VarChar(45)
+  publisher String? 
   volume    Int?
 }
 
@@ -23,8 +23,8 @@ model conference_paper {
   id     Int    @id @default(autoincrement())
   author String
   year   String @db.VarChar(4)
-  title  String @db.VarChar(45)
-  information   String @db.VarChar(50)
+  title  String 
+  information   String 
   pages   String @db.VarChar(10)
 }
  
@@ -33,8 +33,8 @@ model journal_article {
   id     Int    @id @default(autoincrement())
   author String
   year   String @db.VarChar(4)
-  title  String @db.VarChar(45)
-  name   String @db.VarChar(45)
+  title  String 
+  name   String 
   volume String @db.VarChar(5)
   issueNumber String @db.VarChar(10)
   pages   String @db.VarChar(10)
