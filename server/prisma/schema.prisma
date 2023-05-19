@@ -15,8 +15,8 @@ model book {
   author    String
   title     String @db.VarChar(45)
   year      String @db.VarChar(4)
-  publisher String @db.VarChar(45)
-  volume    Int
+  publisher String? @db.VarChar(45)
+  volume    Int?
 }
 
 model conference_paper {
@@ -24,9 +24,10 @@ model conference_paper {
   author String
   year   String @db.VarChar(4)
   title  String @db.VarChar(45)
-  info   String @db.VarChar(50)
-  page   String @db.VarChar(10)
+  information   String @db.VarChar(50)
+  pages   String @db.VarChar(10)
 }
+ 
 
 model journal_article {
   id     Int    @id @default(autoincrement())
@@ -35,6 +36,6 @@ model journal_article {
   title  String @db.VarChar(45)
   name   String @db.VarChar(45)
   volume String @db.VarChar(5)
-  issuer String @db.VarChar(10)
-  page   String @db.VarChar(10)
+  issueNumber String @db.VarChar(10)
+  pages   String @db.VarChar(10)
 }
