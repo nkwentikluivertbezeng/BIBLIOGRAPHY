@@ -1,29 +1,94 @@
 
-  <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-    <mat-cell *matCellDef="let book">{{book.id}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="title">
-    <mat-header-cell *matHeaderCellDef>Title</mat-header-cell> 
-    <mat-cell
-      *matCellDef="let book">{{book.title}}</mat-cell> 
-    </ng-container> 
-    <ng-container matColumnDef="author_name">
-    <mat-header-cell *matHeaderCellDef>Author</mat-header-cell>
-     <mat-cell *matCellDef="let book">{{book.author_name}}</mat-cell> 
-    </ng-container>
-    <ng-container matColumnDef="year">
-      <mat-header-cell *matHeaderCellDef>year</mat-header-cell>
-       <mat-cell *matCellDef="let book">{{book.publication_year | date:'yyyy'}}</mat-cell> 
-      </ng-container>
-      <ng-container matColumnDef="volume_number">
-        <mat-header-cell *matHeaderCellDef>volume</mat-header-cell>
-         <mat-cell *matCellDef="let book">{{book.volume_number}}</mat-cell> 
-        </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-   </table> -->
-   <div *ngFor ="let reference of data" style="padding: 20px;" [innerHTML]="reference">
-      
-   </div>
+<p style="padding: 10px;">Add Reference</p>
+<mat-radio-group style="padding: 30px;"
+aria-labelledby="example-radio-group"
+class="example-radio-group"
+[(ngModel)]="addBy">
+    BY:
+<mat-radio-button class="example-radio-button" value="file" >
+ file
+</mat-radio-button>
+<mat-radio-button class="example-radio-button" value="form">
+ form
+ </mat-radio-button>
+</mat-radio-group>
+<mat-card class="example-card">
+
+  <mat-card-content *ngIf="addBy=='file'">
+    <mat-card >
+      <mat-card-content>   <p>
+        <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+       [(ngModel)]="type">
+        Reference type:
+        <mat-radio-button class="example-radio-button" *ngFor="let type of types" [value]="type.value">
+          {{type.name}}
+        </mat-radio-button>
+        </mat-radio-group>
+      </p></mat-card-content>
+      <mat-card-content>   <p>
+        <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="style">
+        Style:
+        <mat-radio-button class="example-radio-button" *ngFor="let style of styles" [value]="style.value">
+          {{style.name}}
+        </mat-radio-button>
+        </mat-radio-group>
+      </p></mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="accent" (click)=addFileReferences()>ADD</button>
+  </mat-card-actions>
+</mat-card>
+</mat-card-content>
+
+
+<mat-card-content *ngIf="addBy!='file'">
+  <mat-card >
+    <mat-card-content>   <p>
+      <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      [(ngModel)]="type">
+      Reference type:
+      <mat-radio-button class="example-radio-button" *ngFor="let type of types" [value]="type.value">
+        {{type.name}}
+      </mat-radio-button>
+      </mat-radio-group>
+    </p></mat-card-content>
+ 
+  <mat-card-content style="padding: 15px;">
+    <mat-card *ngIf="type=='conference'">
+        <input type="text" placeholder="author name" [(ngModel)]="Conference_paper.author">
+        <input type="text" placeholder="year" [(ngModel)]="Conference_paper.year">
+        <input type="text" placeholder="title" [(ngModel)]="Conference_paper.title">
+        <input type="text" placeholder="page number" [(ngModel)]="Conference_paper.pages">
+        <input type="text" placeholder="information on document" [(ngModel)]="Conference_paper.information">
+    </mat-card>
+
+    <mat-card *ngIf="type=='book'">
+      <input type="text" placeholder="author name" [(ngModel)]="book.author">
+      <input type="text" placeholder="year" [(ngModel)]="book.year">
+      <input type="text" placeholder="title" [(ngModel)]="book.title">
+      <input type="text" placeholder="volume number" [(ngModel)]="book.volume">
+      <input type="text" placeholder="name of publisher" [(ngModel)]="book.publisher">
+  </mat-card>
+
+  <mat-card *ngIf="type=='journal'">
+    <input type="text" placeholder="author name" [(ngModel)]="journal.author" >
+    <input type="text" placeholder="year" [(ngModel)]="journal.year">
+    <input type="text" placeholder="title" [(ngModel)]="journal.title">
+    <input type="text" placeholder="page number" [(ngModel)]="journal.pages">
+    <input type="text" placeholder="name of journal" [(ngModel)]="journal.information">
+    <input type="text" placeholder="name  of publisher" [(ngModel)]="journal.name">
+    <input type="text" placeholder="volume number" [(ngModel)]="journal.volume">
+    <input type="text" placeholder="issueNumber" [(ngModel)]="journal.issueNumber">
+</mat-card>
+  </mat-card-content>
+<mat-card-actions>
+  <button mat-button color="accent" (click)=addFormReferences()>ADD</button>
+</mat-card-actions>
+</mat-card>
+  </mat-card-content>

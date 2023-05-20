@@ -6,3 +6,22 @@ table {
   padding-left: 16px; 
   font-size: 20px;
 }
+.example-card {
+  max-width: 700px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+input{
+  border: none;
+  height: 50px;
+  border-bottom: 1px solid black;
+}

@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model book {
+  id        Int    @id @default(autoincrement())
+  author    String
+  title     String
+  year      String @db.VarChar(4)
+  publisher String? 
+  volume    String?
+}
+
+model conference_paper {
+  id     Int    @id @default(autoincrement())
+  author String
+  year   String @db.VarChar(4)
+  title  String 
+  information   String 
+  pages   String @db.VarChar(10)
+}
+ 
+
+model journal_article {
+  id     Int    @id @default(autoincrement())
+  author String
+  year   String @db.VarChar(4)
+  title  String 
+  name   String 
+  volume String @db.VarChar(5)
+  issueNumber String @db.VarChar(10)
+  pages   String @db.VarChar(10)
+}
