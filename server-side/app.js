@@ -46,7 +46,7 @@ app.get('/book', async (req,res)=>{
       style:req.query.style
     }
   })
-
+  
  const referenceInfoArray = [
   // {
   //   type: 'book',
